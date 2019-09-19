@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Train Tracker</title>
+    <!-- Linking jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Linking CSS -->
+    <link href="assets/skeleton.css" rel="stylesheet" type="text/css">
+    <link href="assets/style.css" rel="stylesheet" type="text/css">
+      <!-- Firebase References -->
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+
+</head>
+<body>
+    <table class="u-full-width">
+        <thead>
+            <tr>
+            <th>Train Name</th>
+            <th>Destination</th>
+            <th>Frequency</th>
+            <th>Next Arrival</th>
+            <th>Minutes Away</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <form>
+        <div class="row">
+            <div class="twelve columns"></div>
+                <label for="train-name">Train Name</label>
+                <select class="u-full-width" id="train-input">
+            </div>
+        </div>
+        <div class="row">
+            <div class="twelve columns">
+                <label for="destination">Destination</label>
+                <select class="u-full-width" id="destination-input">
+            </div>
+        </div>
+        <!-- <div class="row">
+            <div class="twelve columns">
+                <label for="first-time">First Train Time (HH:mm - Military Time)</label>
+                <select class="u-full-width" id="time-input"> 
+            </div>
+        </div>
+        <div class="row">
+            <div class="twelve columns">
+                <label for="frequency">Frequency (minutes)</label>
+                <select class="u-full-width" id="frequency-input">
+            </div>
+        </div> -->
+<!-- 
+        <input class="button-primary" type="submit" value="Submit"> -->
+    </form>
+    <script src="assets/logic.js"></script>
+</body>
+</html>
