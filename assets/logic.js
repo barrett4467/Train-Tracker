@@ -11,25 +11,24 @@ var firebaseConfig = {
   firebase.initializeApp(firebaseConfig);
 
   var database = firebase.database();
+  var initialName = "Thomas"
+  var initialDestination = "The Island of Sodor"
   
-  var trainName = $("#train-input").val().trim();
-  var destination = $("#destination-input").val().trim();
-  var firstTrain = $("#time-input").val().trim();
-  var frequency = $("#frequency-input").val().trim();
+  var trainName = initialName;
+  var destination = initialDestination;
+  var firstTrain = "03:30"
+  var frequency = "15";
   var nextTrain = "Math";
   var timeRemaining = "We'll Get There";
   
   var table = $("#train-data");
+  var train;
   
-  
-  function renderTrains (train) {
-      // for (i = 0; i < trainCount; i++){
-          //     var row = $("<tr>").attr("id", "train"+ [i + 1]);
-          
-          //     row.append(nameData);
-          //     table.append(row);
-          //   }
-        }
+//   function renderTrains (train) {
+//       for (i = 0; i < trainCount; i++){
+//         $("#train-data").append(`<tr><td>${trainName}</td><td>${destination}</td><td>${frequency}</td><td>${nextTrain}</td><td>${timeRemaining}</td><tr>`);
+//         }
+//     }
         
 $("#submit").on("click", function (event){
     event.preventDefault();
@@ -41,8 +40,6 @@ $("#submit").on("click", function (event){
 
     console.log(trainName, destination, firstTrain, frequency)
 
-    $("#train-data").append(`<tr><td>${trainName}</td><td>${destination}</td><td>${frequency}</td><td>${nextTrain}</td><td>${timeRemaining}</td><tr>`);
-
     database.ref().push({
         trainName: trainName,
         destination: destination,
@@ -50,19 +47,49 @@ $("#submit").on("click", function (event){
         frequency: frequency
       });
 
+      alert("Train has been added!");
+
+      $("#train-input").val("");
+      $("#destination-input").val("");
+      $("#time-input").val("");
+      $("#frequency-input").val("");
 })
 
-
+    database.ref().on("value", function(snapshot){
+        var trainName = snapshot.val().trainName;
+        var destination = snapshot.val().destination;
+        var firstTrain = snapshot.val().firstTrain;
+        var frequency = snapshot.val().firstTrain;
+        
+        
+        $("#train-data > tbody").append(`<tr><td>${trainName}</td><td>${destination}</td><td>${frequency}</td><td>${nextTrain}</td><td>${timeRemaining}</td><tr>`);
+    });
     database.ref().on("child_added", function(snapshot) {
-      var row = $("<tr>").attr("id", "train");
+        console.log(snapshot.val());
 
-      $("#employee-data").append(`<tr><td>${trainName}</td><td>${destination}</td><td>${frequency}</td><td>${nextTrain}</td><td>${timeRemaining}</td><tr>`);
+
+        var trainName = snapshot.val().trainName;
+        var destination = snapshot.val().destination;
+        var firstTrain = snapshot.val().firstTrain;
+        var frequency = snapshot.val().firstTrain;
+
+        console.log(trainName, destination, firstTrain, frequency);
+
+        // var firstTrainFormatted = moment.unix(firstTrain).format("HH:mm");
+
+        // var timeRemaining = moment().diff(moment(firstTrain), "X", "minutes");
+        // console.log("Time Remaining: " + timeRemaining);
+
+      $("#train-data > tbody").append(`<tr><td>${trainName}</td><td>${destination}</td><td>${frequency}</td><td>${nextTrain}</td><td>${timeRemaining}</td><tr>`);
       //needs to update when database has been changed 
-      renderTrains();
-      $("#employee-data").append(snapshot.val());
-    })
+      
+     
+    }, function(errorObject) {
+        console.log("The read Failed: " + errorObject.code);
 
+    });
 
+    // renderTrains();
 
 
 
