@@ -16,7 +16,8 @@
 
 </head>
 <body>
-    <table class="u-full-width">
+    <h2>Don't Be Late!!</h2>
+    <table class="u-full-width" id= "train-data">
         <thead>
             <tr>
             <th>Train Name</th>
@@ -30,32 +31,32 @@
     </table>
     <form>
         <div class="row">
-            <div class="twelve columns"></div>
+            <div></div>
                 <label for="train-name">Train Name</label>
-                <select class="u-full-width" id="train-input">
+                <input type="text" class="u-full-width" id="train-input"><br>
             </div>
         </div>
         <div class="row">
-            <div class="twelve columns">
+            <div>
                 <label for="destination">Destination</label>
-                <select class="u-full-width" id="destination-input">
-            </div>
-        </div>
-        <!-- <div class="row">
-            <div class="twelve columns">
-                <label for="first-time">First Train Time (HH:mm - Military Time)</label>
-                <select class="u-full-width" id="time-input"> 
+                <input type="text" class="u-full-width" id="destination-input"><br>
             </div>
         </div>
         <div class="row">
-            <div class="twelve columns">
-                <label for="frequency">Frequency (minutes)</label>
-                <select class="u-full-width" id="frequency-input">
+            <div>
+                <label for="first-time">First Train Time (HH:mm - Military Time)</label>
+                <input type="time" class="u-full-width" id="time-input"><br>
             </div>
-        </div> -->
-<!-- 
-        <input class="button-primary" type="submit" value="Submit"> -->
-    </form>
+        </div>
+        <div class="row">
+            <div>
+                <label for="frequency">Frequency (minutes)</label>
+                <input type="number" class="u-full-width" id="frequency-input"><br>
+            </div>
+        </div>
+        <input class="button-primary" id="submit" type="submit" value="Submit">
+    </form> 
+
     <script src="assets/logic.js"></script>
 </body>
 </html>
