@@ -18,18 +18,11 @@ var firebaseConfig = {
   var destination = initialDestination;
   var firstTrain = "03:30"
   var frequency = "15";
-  var nextTrain = "Math";
-  var timeRemaining = "We'll Get There";
   
   var table = $("#train-data");
   var train;
-  
-//   function renderTrains (train) {
-//       for (i = 0; i < trainCount; i++){
-//         $("#train-data").append(`<tr><td>${trainName}</td><td>${destination}</td><td>${frequency}</td><td>${nextTrain}</td><td>${timeRemaining}</td><tr>`);
-//         }
-//     }
-        
+
+
 $("#submit").on("click", function (event){
     event.preventDefault();
 
@@ -38,13 +31,13 @@ $("#submit").on("click", function (event){
     firstTrain = $("#time-input").val().trim();
     frequency = $("#frequency-input").val().trim();
 
-    console.log(trainName, destination, firstTrain, frequency)
+    console.log(frequency)
 
     database.ref().push({
-        trainName: trainName,
-        destination: destination,
-        firstTrain: firstTrain,
-        frequency: frequency
+        trainName,
+        destination,
+        firstTrain,
+        frequency
       });
 
       alert("Train has been added!");
@@ -55,15 +48,6 @@ $("#submit").on("click", function (event){
       $("#frequency-input").val("");
 })
 
-    database.ref().on("value", function(snapshot){
-        var trainName = snapshot.val().trainName;
-        var destination = snapshot.val().destination;
-        var firstTrain = snapshot.val().firstTrain;
-        var frequency = snapshot.val().firstTrain;
-        
-        
-        $("#train-data > tbody").append(`<tr><td>${trainName}</td><td>${destination}</td><td>${frequency}</td><td>${nextTrain}</td><td>${timeRemaining}</td><tr>`);
-    });
     database.ref().on("child_added", function(snapshot) {
         console.log(snapshot.val());
 
@@ -71,16 +55,18 @@ $("#submit").on("click", function (event){
         var trainName = snapshot.val().trainName;
         var destination = snapshot.val().destination;
         var firstTrain = snapshot.val().firstTrain;
-        var frequency = snapshot.val().firstTrain;
+        var frequency = snapshot.val().frequency;
 
         console.log(trainName, destination, firstTrain, frequency);
 
-        // var firstTrainFormatted = moment.unix(firstTrain).format("HH:mm");
-
-        // var timeRemaining = moment().diff(moment(firstTrain), "X", "minutes");
-        // console.log("Time Remaining: " + timeRemaining);
-
-      $("#train-data > tbody").append(`<tr><td>${trainName}</td><td>${destination}</td><td>${frequency}</td><td>${nextTrain}</td><td>${timeRemaining}</td><tr>`);
+        var firstTrainConverted = moment(firstTrain, "HH: mm").subtract(1, "years"); 
+        var difference = moment().diff(moment(firstTrainConverted), "minutes"); 
+        var remainder = difference % frequency;
+        var minutesTillTrain = frequency - remainder;
+        var nextTrainTime = moment().add(minutesTillTrain, "minutes");
+        var timeRemaining = minutesTillTrain;
+        var nextTrain = moment(nextTrainTime).format("h:mm");
+      $("#train-data > tbody").append(`<tr><td>${trainName}</td><td>${destination}</td><td>${"Every " + frequency + " minutes"}</td><td>${nextTrain}</td><td>${timeRemaining}</td><tr>`);
       //needs to update when database has been changed 
       
      
