@@ -66,27 +66,27 @@ $("#submit").on("click", function (event){
         var nextTrainTime = moment().add(minutesTillTrain, "minutes");
         var timeRemaining = minutesTillTrain;
         var nextTrain = moment(nextTrainTime).format("h:mm");
-      $("#train-data > tbody").append(`<tr><td>${trainName}</td><td>${destination}</td><td>${"Every " + frequency + " minutes"}</td><td>${nextTrain}</td><td>${timeRemaining}</td><tr>`);
+      $("#train-data > tbody").append(`<tr><td><button class='delete'>X</td><td>${trainName}</td><td>${destination}</td><td>${"Every " + frequency + " minutes"}</td><td>${nextTrain}</td><td>${timeRemaining}</td><tr>`);
       //needs to update when database has been changed 
-     
-      
+    
      
     }, function(errorObject) {
         console.log("The read Failed: " + errorObject.code);
 
     });
 
+
+
     // renderTrains();
 
-  //   $("#to-dos").on("click", ".checkbox", function () {
-  //     var index = $(this).attr("data-to-do"); // store id of toDoItem to delete
+    $("#train-data").on("click", ".delete", function () {
+      alert("YESSS");
+      var index = $(this).attr(""); 
 
-  //     toDos.splice(index, 1);
+      toDos.splice(index, 1);
 
-  //     localStorage.setItem("toDos", JSON.stringify(toDos));
 
-  //     renderTodos();
-  // });
+  });
 
 
 

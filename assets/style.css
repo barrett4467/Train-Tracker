@@ -1,7 +1,50 @@
-/* body {
-    background-color: #872926;
+#submit {
+    font-family: 'Alegreya Sans', sans-serif;
+    background-color: lightcoral;
+    border-color: lightcoral;
+    text-shadow:
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+    font-size: 15px;
+    color: lightyellow;
 }
 
+.container {
+    background-color: lightgoldenrodyellow;
+    font-size: 20px;
+}
 #train-data {
     background-color: #ffffff;
-} */
+    padding: 10px;
+    font-size: 20px;
+}
+.delete {
+    padding: 0 12px;
+    background-color: lightcoral;
+    color: lightyellow;
+    text-shadow:
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+    font-size: 16px;
+}
+
+h2 {
+    font-family: 'PT Serif', serif;
+    text-align: center;
+    background-color: lightcoral;
+    padding: 10px;
+    text-shadow:
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+    color: lightyellow;
+}
+
+body {
+    font-family: 'Alegreya Sans', sans-serif;
+}
