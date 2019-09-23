@@ -68,6 +68,7 @@ $("#submit").on("click", function (event){
         var nextTrain = moment(nextTrainTime).format("h:mm");
       $("#train-data > tbody").append(`<tr><td>${trainName}</td><td>${destination}</td><td>${"Every " + frequency + " minutes"}</td><td>${nextTrain}</td><td>${timeRemaining}</td><tr>`);
       //needs to update when database has been changed 
+     
       
      
     }, function(errorObject) {
@@ -77,7 +78,15 @@ $("#submit").on("click", function (event){
 
     // renderTrains();
 
+  //   $("#to-dos").on("click", ".checkbox", function () {
+  //     var index = $(this).attr("data-to-do"); // store id of toDoItem to delete
 
+  //     toDos.splice(index, 1);
+
+  //     localStorage.setItem("toDos", JSON.stringify(toDos));
+
+  //     renderTodos();
+  // });
 
 
 
