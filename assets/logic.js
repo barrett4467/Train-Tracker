@@ -29,15 +29,15 @@ var firebaseConfig = {
     $("#train-input").on("input", function() {
         var input = $(this);
         var train = input.val();
-        input.addClass("no");
+        input.addClass("invalid");
 
         if (train){
-            input.removeClass("no").addClass("yes");
+            input.removeClass("invalid").addClass("valid");
             $(".error").remove();
             return true;
 
         } else {
-            input.removeClass("yes").addClass("no");
+            input.removeClass("valid").addClass("invalid");
             $(".error").text("Please enter a valid answer");
             return false;
         }
@@ -92,11 +92,11 @@ var firebaseConfig = {
 
   })
 }
+validation();
 
 
 $("#submit").on("click", function (event){
     event.preventDefault();
-    validation();
   
     trainName = $("#train-input").val().trim();
     destination = $("#destination-input").val().trim();
@@ -104,7 +104,8 @@ $("#submit").on("click", function (event){
     frequency = $("#frequency-input").val().trim();
 
 
-    if ($("#train-input").hasClass("valid") && $("#destination-input").hasClass("valid") && $("#time-input").hasClass("valid") && $("#frequency").hasClass("valid")) {
+
+    if ($("#train-input").hasClass("valid")  && $("#destination-input").hasClass("valid") && $("#time-input").hasClass("valid") && $("#frequency-input").hasClass("valid")){
       database.ref().push({
           trainName,
           destination,
