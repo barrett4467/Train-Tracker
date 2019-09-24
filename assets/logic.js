@@ -144,7 +144,7 @@ $("#submit").on("click", function (event){
         var nextTrainTime = moment().add(minutesTillTrain, "minutes");
         var timeRemaining = minutesTillTrain;
         var nextTrain = moment(nextTrainTime).format("h:mm");
-      $("#train-data > tbody").append(`<tr><td><button class='delete'>X</td><td>${trainName}</td><td>${destination}</td><td>${"Every " + frequency + " minutes"}</td><td>${nextTrain}</td><td>${timeRemaining}</td><tr>`);
+      $("#train-data > tbody").append(`<tr><td>${trainName}</td><td>${destination}</td><td>${"Every " + frequency + " minutes"}</td><td>${nextTrain}</td><td>${timeRemaining}</td><tr>`);
 
       var children = database.ref();
 
