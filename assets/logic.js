@@ -23,7 +23,6 @@ var firebaseConfig = {
   var train;
 
 
-
   function validation (){
 
     $("#train-input").on("input", function() {
@@ -104,8 +103,9 @@ $("#submit").on("click", function (event){
     frequency = $("#frequency-input").val().trim();
 
 
-
+//validates that all inputs have been applied 
     if ($("#train-input").hasClass("valid")  && $("#destination-input").hasClass("valid") && $("#time-input").hasClass("valid") && $("#frequency-input").hasClass("valid")){
+
       database.ref().push({
           trainName,
           destination,
@@ -124,6 +124,7 @@ $("#submit").on("click", function (event){
     }
 
 })
+
 
     database.ref().on("child_added", function(snapshot) {
         console.log(snapshot.val());
@@ -144,8 +145,22 @@ $("#submit").on("click", function (event){
         var timeRemaining = minutesTillTrain;
         var nextTrain = moment(nextTrainTime).format("h:mm");
       $("#train-data > tbody").append(`<tr><td><button class='delete'>X</td><td>${trainName}</td><td>${destination}</td><td>${"Every " + frequency + " minutes"}</td><td>${nextTrain}</td><td>${timeRemaining}</td><tr>`);
-      //needs to update when database has been changed 
-    
+
+      var children = database.ref();
+
+      children.on("value", function(snapshot){
+        var kids = snapshot.numChildren();
+        console.log(kids);
+        
+
+        for (i = 0; i <= kids; i++){
+          $(".delete").attr("data-train", i);
+      
+        }
+        
+      })
+      
+      
      
     }, function(errorObject) {
         console.log("The read Failed: " + errorObject.code);
@@ -154,18 +169,17 @@ $("#submit").on("click", function (event){
 
 
 
-    // renderTrains();
-
     $("#train-data").on("click", ".delete", function () {
-      alert("YESSS");
-      var index = $(this).attr(""); 
+      var index = $(this).attr("data-train"); 
+      console.log("Index: " + index);
+      
 
+      })
       // toDos.splice(index, 1);
 
+      var rowCount = $('#train-data tr').length;
 
-  });
-
-
+ 
 
 
 
