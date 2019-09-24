@@ -23,29 +23,105 @@ var firebaseConfig = {
   var train;
 
 
+
+  function validation (){
+
+    $("#train-input").on("input", function() {
+        var input = $(this);
+        var train = input.val();
+        input.addClass("no");
+
+        if (train){
+            input.removeClass("no").addClass("yes");
+            $(".error").remove();
+            return true;
+
+        } else {
+            input.removeClass("yes").addClass("no");
+            $(".error").text("Please enter a valid answer");
+            return false;
+        }
+
+    })
+    $("#destination-input").on("input", function() {
+        var input = $(this);
+        var destination = input.val();
+
+        if (destination){
+            input.removeClass("invalid").addClass("valid");
+            $(".error").remove();
+            return true;
+        } else {
+            input.removeClass("valid").addClass("invalid");
+            $(".error").text("Please enter a valid answer");
+            return false;
+        }
+
+    })
+    $("#time-input").on("input", function() {
+        var input = $(this);
+        var time = input.val();
+      console.log("Time: " + time);
+      
+        if (time){
+            input.removeClass("invalid").addClass("valid");
+            $(".error").remove();
+            return true;
+
+        } else {
+            input.removeClass("valid").addClass("invalid");
+            $(".error").text("Please enter a valid answer");
+            return false;
+        };
+
+    })
+    $("#frequency-input").on("input", function() {
+      var input = $(this);
+      var frequency = input.val();
+
+      if (frequency){
+          input.removeClass("invalid").addClass("valid");
+          $(".error").remove();
+          return true;
+
+      } else {
+          input.removeClass("valid").addClass("invalid");
+          $(".error").text("Please enter a valid answer");
+          return false;
+      };
+
+  })
+}
+
+
 $("#submit").on("click", function (event){
     event.preventDefault();
-
+    validation();
+  
     trainName = $("#train-input").val().trim();
     destination = $("#destination-input").val().trim();
     firstTrain = $("#time-input").val().trim();
     frequency = $("#frequency-input").val().trim();
 
-    console.log(frequency)
 
-    database.ref().push({
-        trainName,
-        destination,
-        firstTrain,
-        frequency
-      });
+    if ($("#train-input").hasClass("valid") && $("#destination-input").hasClass("valid") && $("#time-input").hasClass("valid") && $("#frequency").hasClass("valid")) {
+      database.ref().push({
+          trainName,
+          destination,
+          firstTrain,
+          frequency
+        });
+  
+        alert("Train has been added!");
+  
+        $("#train-input").val("");
+        $("#destination-input").val("");
+        $("#time-input").val("");
+        $("#frequency-input").val("");
+    } else {
+      alert("Please make a valid selection");
+    }
 
-      alert("Train has been added!");
-
-      $("#train-input").val("");
-      $("#destination-input").val("");
-      $("#time-input").val("");
-      $("#frequency-input").val("");
 })
 
     database.ref().on("child_added", function(snapshot) {
@@ -83,7 +159,7 @@ $("#submit").on("click", function (event){
       alert("YESSS");
       var index = $(this).attr(""); 
 
-      toDos.splice(index, 1);
+      // toDos.splice(index, 1);
 
 
   });

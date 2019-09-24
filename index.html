@@ -19,50 +19,54 @@
     
 </head>
 <body>
-    <div class="container">
-
-        <h2>Train Scheduler</h2>
-        <table class="u-full-width" id= "train-data">
-            <thead>
-                <tr>
-                <th></th>
-                <th>Train Name</th>
-                <th>Destination</th>
-                <th>Frequency</th>
-                <th>Next Arrival</th>
-                <th>Minutes Away</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-        <form>
+    
+    <h2>Train Scheduler</h2>
+        <div class="container">
+            <table class="u-full-width" id= "train-data">
+                <thead>
+                    <tr>
+                    <th></th>
+                    <th>Train Name</th>
+                    <th>Destination</th>
+                    <th>Frequency</th>
+                    <th>Next Arrival</th>
+                    <th>Minutes Away</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <form>
+                <div class="row">
+                    <div>
+                        <label for="train-name">Train Name</label>
+                    <input type="text" class="u-full-width invalid" id="train-input"><br>
+                    <span class="error"></span>
+                </div>
+            </div>
             <div class="row">
                 <div>
-                    <label for="train-name">Train Name</label>
-                <input type="text" class="u-full-width" id="train-input"><br>
+                    <label for="destination">Destination</label>
+                    <input type="text" class="u-full-width invalid" id="destination-input"><br>
+                    <span class="error"></span>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div>
-                <label for="destination">Destination</label>
-                <input type="text" class="u-full-width" id="destination-input"><br>
+            <div class="row">
+                <div>
+                    <label for="first-time">First Train Time (HH:mm)</label>
+                    <input type="time" class="u-full-width invalid" id="time-input"><br>
+                    <span class="error"></span>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div>
-                <label for="first-time">First Train Time (HH:mm)</label>
-                <input type="time" class="u-full-width" id="time-input"><br>
+            <div class="row">
+                <div>
+                    <label for="frequency">Frequency (minutes)</label>
+                    <input type="number" class="u-full-width invalid" id="frequency-input"><br>
+                    <span class="error"></span>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div>
-                <label for="frequency">Frequency (minutes)</label>
-                <input type="number" class="u-full-width" id="frequency-input"><br>
-            </div>
-        </div>
-        <input class="button-primary" id="submit" type="submit" value="Submit">
-    </form> 
-</div>
+            <input class="button-primary" id="submit" type="submit" value="Submit">
+        </form> 
+    </div>
     
     <script src="assets/logic.js"></script>
 </body>
